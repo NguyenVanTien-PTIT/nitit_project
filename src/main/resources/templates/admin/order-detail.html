@@ -115,7 +115,7 @@
                                 </tr>
                                 <tr>
                                     <th colspan="10">Tổng thanh toán</th>
-                                    <th colspan="2" th:text="${order.getTotalPrice()}+' vnđ'"></th>
+                                    <th colspan="2" th:text="${order.getTotalPriceFormat()}+' vnđ'"></th>
                                 </tr>
                                 <tr>
                                     <th colspan="10">Phí giao hàng</th>
@@ -123,7 +123,7 @@
                                 </tr>
                                 <tr>
                                     <th colspan="10">Tổng thanh toán</th>
-                                    <th colspan="2" th:text="${order.getTotalPayment()}+' vnđ'"></th>
+                                    <th colspan="2" th:text="${order.getTotalPaymentFormat()}+' vnđ'"></th>
                                 </tr>
                                 <tr>
                                     <th colspan="10">Trạng thái đơn hàng</th>

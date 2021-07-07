@@ -33,6 +33,16 @@ $(document).ready(function() {
                         location.replace("/login");
                     });
                 }
+            },
+            error: function (error){
+                console.log(error)
+                swal(
+                    'Lỗi!',
+                    'Bạn chưa đăng nhập!',
+                    'error'
+                ).then(function() {
+                    location.replace("/login");
+                });
             }
         });
     });
@@ -47,13 +57,10 @@ $(document).ready(function() {
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: function(res){
+                console.log(res)
                 // NProgress.done();
                 if(res.httpStatus === 'OK') {
-                    swal(
-                        'Thành công!',
-                        res.msg,
-                        'success'
-                    );
+                    toastr.success(res.msg);
                 } else  if(res.httpStatus === 'FORBIDDEN'){
                     swal(
                         'Lỗi!',
@@ -69,6 +76,15 @@ $(document).ready(function() {
                         'info'
                     )
                 }
+            },
+            error: function (error){
+                swal(
+                    'Lỗi!',
+                    'Bạn chưa đăng nhập!',
+                    'error'
+                ).then(function() {
+                    location.replace("/login");
+                });
             }
         });
     });

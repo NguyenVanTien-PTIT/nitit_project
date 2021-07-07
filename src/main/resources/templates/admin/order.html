@@ -105,7 +105,7 @@
                                     <td colspan="1" th:text="${order.getReceiver()}"></td>
                                     <td colspan="1" th:text="${order.getAddress()}"></td>
                                     <td colspan="1" th:text="${order.getPhoneNumber()}"></td>
-                                    <td colspan="1" th:text="${order.getTotalPayment()}"></td>
+                                    <td colspan="1" th:text="${order.getTotalPaymentFormat()}"></td>
                                     <td colspan="1" th:text="${order.getOrderDate()}"></td>
                                     <td colspan="1" th:if="${order.getStatus() == 0}" style="background: #a80000; color: #ffffff">
                                         Đang chờ xác nhận

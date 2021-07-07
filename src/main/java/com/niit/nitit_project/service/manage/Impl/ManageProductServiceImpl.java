@@ -27,6 +27,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -56,16 +57,22 @@ public class ManageProductServiceImpl implements ManageProductService {
         if(watchDTO.getName() == null){
             //Lấy danh sách sản phẩm
             Page<WatchDTO> pageWatch = watchRepository.findAll(pageable).map(o-> {
+                DecimalFormat df = new DecimalFormat("#,###.##");
                 WatchDTO w = WatchMapper.toWatchDTO(o);
                 w.setBrandName(brandRepository.findById(o.getIdBrand()).get().getName());
+                w.setPriceFormat(df.format(w.getPrice()));
+                w.setSalePriceFormat(df.format(w.getSalePrice()));
                 return w;
             });
             model.addAttribute("listWatch", pageWatch);
         }else{
             Page<WatchDTO> pageWatch = watchRepository.findByKeyWord(watchDTO.getName(), pageable)
                     .map(o->{
+                        DecimalFormat df = new DecimalFormat("#,###.##");
                         WatchDTO w = WatchMapper.toWatchDTO(o);
                         w.setBrandName(brandRepository.findById(o.getIdBrand()).get().getName());
+                        w.setPriceFormat(df.format(w.getPrice()));
+                        w.setSalePriceFormat(df.format(w.getSalePrice()));
                         return w;
                     });
             model.addAttribute("listWatch", pageWatch);

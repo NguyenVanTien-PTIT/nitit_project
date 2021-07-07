@@ -17,7 +17,7 @@ public class ProductsController {
     @GetMapping("/client/products")
     public String loadPageProduct(@RequestParam(value = "idBrand",  required = false) Integer idBrand,
                                         @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
-                                        @RequestParam(value = "limit", required = false, defaultValue = "6") Integer limit,
+                                        @RequestParam(value = "limit", required = false, defaultValue = "8") Integer limit,
                                         Model model,
                                         @ModelAttribute("watch") WatchDTO watchDTO){
         if(idBrand != null){

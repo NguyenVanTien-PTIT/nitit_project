@@ -5,15 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BrandDTO {
-    private Integer id;
-    private String name;
-    private String location;
-    private String introduce;
+public class StatisticBrand {
+    private Integer idBrand;
+    private String nameBrand;
+    private int totalWatch;
 }

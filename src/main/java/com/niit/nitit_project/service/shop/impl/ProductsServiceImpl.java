@@ -18,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,6 +43,9 @@ public class ProductsServiceImpl implements ProductsService {
         Pageable pageable = PageRequest.of(page, limit);
         Page<WatchDTO> pageWatchDTO = watchRepository.findByIdBrand(id, pageable).map(o -> {
             WatchDTO watchDTO = WatchMapper.toWatchDTO(o);
+            DecimalFormat df = new DecimalFormat("#,###.##");
+            watchDTO.setPriceFormat(df.format(watchDTO.getPrice()));
+            watchDTO.setSalePriceFormat(df.format(watchDTO.getSalePrice()));
             watchDTO.setImageDTOList(
                     imageRepository.getListByIdWatch(o.getId())
                             .stream().map(o1 -> ImageMapper.toImageDTO(o1))
@@ -70,6 +74,9 @@ public class ProductsServiceImpl implements ProductsService {
         Page<WatchDTO> pageWatchDTO = watchRepository
                 .findByKeyWord(watchDTO.getName().trim(), pageable).map(o -> {
                     WatchDTO w = WatchMapper.toWatchDTO(o);
+                    DecimalFormat df = new DecimalFormat("#,###.##");
+                    w.setPriceFormat(df.format(w.getPrice()));
+                    w.setSalePriceFormat(df.format(w.getSalePrice()));
                     w.setImageDTOList(imageRepository.getListByIdWatch(w.getId())
                         .stream()
                         .map(image -> ImageMapper.toImageDTO(image))

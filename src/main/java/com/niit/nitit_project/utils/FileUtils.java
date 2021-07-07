@@ -31,13 +31,16 @@ public class FileUtils {
     }
 
     public static void deleteFile(String folder, String fileName) {
-        Path path = FileSystems.getDefault().getPath(folder + fileName);
-        try {
+        try{
+            Path path = FileSystems.getDefault().getPath(folder + fileName);
             Files.delete(path);
-        } catch (NoSuchFileException x) {
-            System.err.format("%s: no such" + " file or directory%n", path);
+        }catch (NoSuchFileException x) {
+            System.err.format("%s: no such" + " file or directory%n");
         } catch (IOException x) {
             System.err.println(x);
+        }catch (Exception e){
+            System.out.println(e);
+            return;
         }
     }
 }

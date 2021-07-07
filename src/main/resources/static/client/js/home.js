@@ -5,7 +5,7 @@ $(document).ready(function() {
         var idWatch = $(this).attr("watchId");
         dataCart.idWatch = idWatch;
 
-        // NProgress.start();
+        NProgress.start();
         var url = "/client/cart";
 
         $.ajax ({
@@ -15,13 +15,9 @@ $(document).ready(function() {
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: function(res){
-                // NProgress.done();
+                NProgress.done();
                 if(res.httpStatus === 'OK') {
-                    swal(
-                        'Thành công!',
-                        res.msg,
-                        'success'
-                    );
+                    toastr.success(res.msg);
                 } else  if(res.httpStatus === 'FORBIDDEN'){
                     swal(
                         'Lỗi!',
@@ -31,6 +27,15 @@ $(document).ready(function() {
                         location.replace("/login");
                     });
                 }
+            },
+            error: function (error) {
+                swal(
+                    'Thông báo',
+                    'Bạn chưa đăng nhập',
+                    'warning'
+                ).then(function() {
+                    location.replace("/login");
+                });
             }
         });
     });
@@ -47,11 +52,7 @@ $(document).ready(function() {
             success: function(res){
                 // NProgress.done();
                 if(res.httpStatus === 'OK') {
-                    swal(
-                        'Thành công!',
-                        res.msg,
-                        'success'
-                    );
+                    toastr.success(res.msg);
                 } else  if(res.httpStatus === 'FORBIDDEN'){
                     swal(
                         'Lỗi!',
@@ -67,6 +68,15 @@ $(document).ready(function() {
                         'info'
                     )
                 }
+            },
+            error: function (error) {
+                swal(
+                    'Thông báo',
+                    'Bạn chưa đăng nhập',
+                    'warning'
+                ).then(function() {
+                    location.replace("/login");
+                });
             }
         });
     });

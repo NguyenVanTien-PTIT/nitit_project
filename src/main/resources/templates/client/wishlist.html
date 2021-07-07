@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Shop Column Three || Hiraola - Jewellery eCommerce Bootstrap 4 Template</title>
+	<title>Danh sách yêu thích</title>
 	<meta name="robots" content="noindex, follow" />
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -66,7 +66,7 @@
 		<div class="breadcrumb-content">
 			<h2>Shop</h2>
 			<ul>
-				<li><a href="index.html">Home</a></li>
+				<li><a href="/client/home">Trang chủ</a></li>
 				<li class="active">Danh sách yêu thích</li>
 			</ul>
 		</div>
@@ -123,9 +123,9 @@
 					<div class="col-lg-4" th:each="watch : ${pageWatch.getContent()}">
 						<div class="slide-item">
 							<div class="single_product">
-								<div class="product-img">
-									<a th:href="${'/product/'+watch.getId()}">
-										<img class="primary-img"  th:src="${watch.getImageDTOList().get(0).getLink()}" alt="Hiraola's Product Image">
+								<div class="product-img" style="width: 202px; height: 202px; overflow: hidden; margin: 0 auto">
+									<a th:href="${'/product/'+watch.getId()}" style="display: block; width: 100%; height: 100%">
+										<img class="primary-img"  th:src="${watch.getImageDTOList().get(0).getLink()}" alt="Hiraola's Product Image" style="width: 100%; height: 100%; object-fit: contain;">
 									</a>
 									<div class="add-actions">
 										<ul>

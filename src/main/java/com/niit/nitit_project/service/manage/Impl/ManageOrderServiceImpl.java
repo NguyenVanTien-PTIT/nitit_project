@@ -20,6 +20,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,7 +37,13 @@ public class ManageOrderServiceImpl implements ManageOrderService {
     public Model loadPage(Model model, Integer page, Integer limit) {
         //Lấy danh sách order
         Pageable pageable = PageRequest.of(page, limit, Sort.by("id").descending());
-        Page<OrderDTO> orderDTOPage = orderRepository.findAll(pageable).map(o-> OrderMapper.toOrderDTO(o));
+        Page<OrderDTO> orderDTOPage = orderRepository.findAll(pageable).map(o-> {
+            DecimalFormat df = new DecimalFormat("#,###.##");
+            OrderDTO orderDTO = OrderMapper.toOrderDTO(o);
+            orderDTO.setTotalPriceFormat(df.format(orderDTO.getTotalPrice()));
+            orderDTO.setTotalPaymentFormat(df.format(orderDTO.getTotalPayment()));
+            return orderDTO;
+        });
         model.addAttribute("orderPage", orderDTOPage);
         return model;
     }
@@ -55,7 +62,10 @@ public class ManageOrderServiceImpl implements ManageOrderService {
                 .collect(Collectors.toList());
         model.addAttribute("listOrderWatch", orderWatchDTOList);
         //Lấy thông tin order
+        DecimalFormat df = new DecimalFormat("#,###.##");
         OrderDTO orderDTO = OrderMapper.toOrderDTO(orderRepository.findById(idOrder).get());
+        orderDTO.setTotalPriceFormat(df.format(orderDTO.getTotalPrice()));
+        orderDTO.setTotalPaymentFormat((df.format(orderDTO.getTotalPayment())));
         model.addAttribute("order", orderDTO);
         return model;
     }

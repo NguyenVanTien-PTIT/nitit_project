@@ -33,4 +33,6 @@ public class WatchDTO {
     private Integer idBrand;
     private String brandName;
     private List<ImageDTO> imageDTOList;
+    private String salePriceFormat;
+    private String priceFormat;
 }

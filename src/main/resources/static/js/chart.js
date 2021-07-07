@@ -3,16 +3,16 @@ $(function() {
   var dataChart = [];
   var labelChart = [];
 
-  for(var i=0;i<vm.chartDataVMS.length;i++) {
-    dataChart.push(vm.chartDataVMS[i].value);
-    labelChart.push(vm.chartDataVMS[i].label);
+  for(var i=0;i<list.length;i++) {
+    dataChart.push(list[i].totalWatch);
+    labelChart.push(list[i].nameBrand);
   }
   var doughnutPieData = {
 
     datasets: [{
       data: dataChart,
       backgroundColor: [
-        'rgba(255, 99, 132, 0.5)',
+        'rgba(227,13,68,0.5)',
         'rgba(54, 162, 235, 0.5)',
         'rgba(255, 206, 86, 0.5)',
         'rgba(75, 192, 192, 0.5)',

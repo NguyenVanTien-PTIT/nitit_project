@@ -39,15 +39,16 @@ $(document).ready(function() {
                         'Thành công!',
                         res.msg,
                         'success'
-                    );
-                } else if(res.httpStatus === 'BAD_REQUEST'){
+                    ).then(function (){
+                        location.reload();
+                    });
+                } else if(res.httpStatus === 'BAD_REQUEST') {
                     swal(
                         'Error',
                         res.msg,
                         'error'
                     );
                 }
-                location.reload();
             }
         })
     });

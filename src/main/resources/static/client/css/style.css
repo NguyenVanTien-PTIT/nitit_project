@@ -1284,11 +1284,12 @@ button, .global-overlay, .quantity .cart-plus-minus > .qtybutton, .popup_wrapper
 }
 
 .template-color-1 a.hiraola-btn {
-  background-color: #cda557;
+  background-color: #f5e398;
+  color: #000000;
 }
 
 .template-color-1 a.hiraola-btn:hover {
-  background-color: #d5b473;
+  background-color: #e5e08c;
   color: #ffffff !important;
 }
 
@@ -1471,6 +1472,7 @@ button, .global-overlay, .quantity .cart-plus-minus > .qtybutton, .popup_wrapper
 .template-color-1 .hiraola-product_slider-3 .slide-item .single_product,
 .template-color-1 .latest-blog_slider .slide-item .single_product,
 .template-color-1 .shop-product-wrap .slide-item .single_product {
+  height: 351px;
   border: 1px solid #e5e5e5;
 }
 
@@ -2828,7 +2830,7 @@ button, .global-overlay, .quantity .cart-plus-minus > .qtybutton, .popup_wrapper
 /*----------------------------------------*/
 button.li-btn {
   border: none;
-  background: #cda557;
+  background: #262626;
   color: #ffffff;
   font-size: 18px;
   width: 45px;
@@ -3239,7 +3241,7 @@ button.li-btn:hover {
 .bg-1,
 .bg-2,
 .bg-3 {
-  background-image: url("https://file.hstatic.net/1000168174/article/bella_-_banner_web_tin_tt-final.jpg");
+  background-image: url("../images/slider/silde_3.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -3255,20 +3257,11 @@ button.li-btn:hover {
 }
 
 .bg-2 {
-  background-image: url("//file.hstatic.net/1000168174/article/banner_zalo_bi_quyet_lua_chon_trang_phuc__giai_nhiet__mua_he-ok-03_871d0bc7020142c4a2005e2edcf2d3a2.png");
+  background-image: url("../images/slider/slide_2.jpg");
 }
 
 .bg-3 {
-  background-image: url("https://file.hstatic.net/1000168174/file/bella_-_banner_web_-_fb_-_final_master.jpg");
-}
-
-.bg-4,
-.bg-5 {
-  background-image: url("../images/slider/4.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  min-height: 825px;
+  background-image: url("../images/slider/slide_1.jpg");
 }
 
 @media (max-width: 1199px) {
@@ -4230,7 +4223,7 @@ button.li-btn:hover {
 }
 
 .category-menu .category-heading {
-  background: #cda557;
+  background: #232222;
   position: relative;
   cursor: pointer;
   padding: 19px 0;
@@ -5682,7 +5675,7 @@ button.li-btn:hover {
 /*  22 - Components - Breadcrumb
 /*----------------------------------------*/
 .breadcrumb-area {
-  background-image: url("../images/breadcrumb/1.jpg");
+  background-image: url("../images/breadcrumb/anhbia.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -5697,6 +5690,9 @@ button.li-btn:hover {
 }
 
 .breadcrumb-area .breadcrumb-content {
+  background: #FFFFFF;
+  border-radius: 5px;
+  padding: 12px 10px 11px 10px;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -5714,7 +5710,7 @@ button.li-btn:hover {
 
 .breadcrumb-area .breadcrumb-content > h2 {
   font-weight: 700;
-  color: #ffffff;
+  color: #000000;
   text-transform: uppercase;
   text-align: center;
   font-size: 36px;
@@ -5729,7 +5725,7 @@ button.li-btn:hover {
 }
 
 .breadcrumb-area .breadcrumb-content ul > li {
-  color: #ffffff;
+  color: #000000;
   display: inline-block;
   padding-left: 20px;
   position: relative;
@@ -5747,7 +5743,7 @@ button.li-btn:hover {
   right: -15px;
   top: 2px;
   font-size: 10px;
-  color: #ffffff;
+  color: #000000;
 }
 
 .breadcrumb-area .breadcrumb-content ul > li:last-child:before {
@@ -5755,7 +5751,7 @@ button.li-btn:hover {
 }
 
 .breadcrumb-area .breadcrumb-content ul > li > a {
-  color: #ffffff;
+  color: #000000;
 }
 
 /*----------------------------------------*/
@@ -5763,6 +5759,8 @@ button.li-btn:hover {
 /*----------------------------------------*/
 /* ---Header Top Area--- */
 .header-top_area {
+  background: #272525;
+  color: white;
   border-bottom: 1px solid #e5e5e5;
 }
 
@@ -5851,7 +5849,7 @@ button.li-btn:hover {
 }
 
 .header-top_area .ht-menu > ul > li > a {
-  color: #666666;
+  color: #ffffff;
   padding: 8px 15px;
   display: block;
   text-transform: uppercase;
@@ -6044,7 +6042,7 @@ button.li-btn:hover {
 
 /* ---Header Bottom Area--- */
 .header-bottom_area {
-  background-color: #cda557;
+  background-color: #272525;
 }
 
 .header-bottom_area > .container {
@@ -6484,7 +6482,7 @@ button.li-btn:hover {
 
 /* ---Header Sticky--- */
 .header-main_area .header-sticky.sticky {
-  background: #cda557;
+  background: #272525;
   -webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
   left: 0;
@@ -6637,7 +6635,7 @@ button.li-btn:hover {
 /*  25 - Section - Footer
 /*----------------------------------------*/
 .hiraola-footer_area {
-  background-color: #f7f7f7;
+  background-color: #d8d7d7;
 }
 
 .hiraola-footer_area .footer-top_area {
@@ -6772,6 +6770,10 @@ button.li-btn:hover {
 }
 
 /* ---Footer Bottom--- */
+.footer-bottom_area {
+  background: #151515;
+}
+
 .footer-bottom_area .footer-bottom_nav {
   border-top: 1px solid #e5e5e5;
   padding: 30px 0 35px;
@@ -6812,6 +6814,7 @@ button.li-btn:hover {
 }
 
 .footer-bottom_area .footer-bottom_nav .copyright {
+  color: #929292;
   padding-top: 25px;
   text-align: center;
 }

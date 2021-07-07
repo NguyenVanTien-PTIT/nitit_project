@@ -10,6 +10,7 @@
     <meta name="robots" content="noindex, follow"/>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{/toastr/toastr.min.css}"/>
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/client/images/favicon.ico}">
 
@@ -74,12 +75,12 @@
                             <div class="single-slide animation-style-01 bg-1">
                                 <div class="container">
                                     <div class="slider-content">
-                                        <h5><span>Black Friday</span> This Week</h5>
-                                        <h2>Work Desk</h2>
-                                        <h3>Surface Studio 2019</h3>
-                                        <h4>Starting at <span>£1599.00</span></h4>
+                                        <h5 style="color: #ffffff"><span>Các loại đồng hồ</span> Thương hiệu nổi tiếng</h5>
+                                        <h2 style="color: #ffffff">Sang trọng</h2>
+                                        <h3 style="color: #ffffff">Đẳng cấp 2019</h3>
+                                        <h4 style="color: #ffffff">Giá từ <span>499.000đ</span></h4>
                                         <div class="hiraola-btn-ps_left slide-btn">
-                                            <a class="hiraola-btn" href="shop-left-sidebar.html">Shopping Now</a>
+                                            <a class="hiraola-btn" href="shop-left-sidebar.html">Mua ngay</a>
                                         </div>
                                     </div>
                                     <div class="slider-progress"></div>
@@ -90,12 +91,12 @@
                             <div class="single-slide animation-style-02 bg-2">
                                 <div class="container">
                                     <div class="slider-content">
-                                        <h5><span>-10% Off</span> This Week</h5>
-                                        <h2>Phantom4</h2>
-                                        <h3>Pro+ Obsidian</h3>
-                                        <h4>Starting at <span>£809.00</span></h4>
+                                        <h5 style="color: #ffffff"><span>Giảm giá</span> Tuần này</h5>
+                                        <h2 style="color: #ffffff">Casio</h2>
+                                        <h3 style="color: #ffffff">Gari+Rolex</h3>
+                                        <h4 style="color: #ffffff">Giá chỉ từ <span>200.000 đ</span></h4>
                                         <div class="hiraola-btn-ps_left slide-btn">
-                                            <a class="hiraola-btn" href="shop-left-sidebar.html">Shopping Now</a>
+                                            <a class="hiraola-btn" href="/client/product">Mua ngay</a>
                                         </div>
                                     </div>
                                     <div class="slider-progress"></div>
@@ -104,12 +105,12 @@
                             <div class="single-slide animation-style-02 bg-3">
                                 <div class="container">
                                     <div class="slider-content">
-                                        <h5><span>Black Friday</span> This Week</h5>
-                                        <h2>Work Desk</h2>
-                                        <h3>Surface Studio 2019</h3>
-                                        <h4>Starting at <span>£1599.00</span></h4>
+                                        <h5 style="color: #ffffff"><span>Black Friday</span> Tuần ưu đãi</h5>
+                                        <h2 style="color: #ffffff">Giảm giá</h2>
+                                        <h3 style="color: #ffffff">Sale off nhiều mặt hàng</h3>
+                                        <h4 style="color: #ffffff">Giá chỉ từ: <span>499.000 đ</span></h4>
                                         <div class="hiraola-btn-ps_left slide-btn">
-                                            <a class="hiraola-btn" href="shop-left-sidebar.html">Shopping Now</a>
+                                            <a class="hiraola-btn" href="shop-left-sidebar.html">Mua ngay nào</a>
                                         </div>
                                     </div>
                                     <div class="slider-progress"></div>
@@ -128,22 +129,22 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="banner-item img-hover_effect">
-                        <a href="shop-left-sidebar.html">
+                        <a href="">
                             <img class="img-full" th:src="@{/client/images/banner/1_2.jpg}" alt="Hiraola's Banner">
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="banner-item img-hover_effect">
-                        <a href="shop-left-sidebar.html">
+                        <a href="">
                             <img class="img-full" th:src="@{/client/images/banner/1_3.jpg}" alt="Hiraola's Banner">
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="banner-item img-hover_effect">
-                        <a href="shop-left-sidebar.html">
-                            <img class="img-full" th:src="@{/client/images/banner/1_4.jpg}" alt="Hiraola's Banner">
+                        <a href="">
+                            <img class="img-full" th:src="@{/client/images/banner/1_4.png}" alt="Hiraola's Banner">
                         </a>
                     </div>
                 </div>
@@ -167,7 +168,7 @@
                             <div class="single_product">
                                 <div class="product-img">
                                     <a th:href="${'/product/'+watch.getId()}">
-                                        <img class="primary-img" th:src="${watch.getImageDTOList().get(0).getLink()}" alt="Hiraola's Product Image">
+                                        <img class="primary-img" th:src="${watch.getImageDTOList().get(0).getLink()}" alt="Hiraola's Product Image" style="width: 202px; height: 202px; object-fit: contain;">
                                     </a>
                                     <span class="sticker">New</span>
                                     <div class="add-actions">
@@ -191,7 +192,7 @@
                                     <div class="product-desc_info">
                                         <h6><a class="product-name" th:href="${'/product/'+watch.getId()}" th:text="${watch.getName()}"></a></h6>
                                         <div class="price-box">
-                                            <span class="new-price" th:text="${watch.getSalePrice() + ' vnđ'}"></span>
+                                            <span class="new-price" th:text="${watch.getSalePriceFormat() + ' vnđ'}"></span>
                                         </div>
                                         <div class="additional-add_action">
                                             <ul>
@@ -229,7 +230,7 @@
                 <div class="col-lg-6">
                     <div class="banner-item img-hover_effect">
                         <a href="shop-left-sidebar.html">
-                            <img class="img-full" th:src="@{/client/images/banner/1_5.jpg}" alt="Hiraola's Banner">
+                            <img class="img-full" th:src="@{/client/images/banner/1_5.png}" alt="Hiraola's Banner">
                         </a>
                     </div>
                 </div>
@@ -262,7 +263,7 @@
                                     <div class="single_product">
                                         <div class="product-img">
                                             <a th:href="${'/product/'+watch.getId()}">
-                                                <img class="primary-img" th:src="${watch.getImageDTOList().get(0).getLink()}" alt="Product Image">
+                                                <img class="primary-img" th:src="${watch.getImageDTOList().get(0).getLink()}" alt="Product Image" style="width: 202px; height: 202px; object-fit: contain;">
                                             </a>
                                             <span class="sticker-2">Sale</span>
                                             <div class="add-actions">
@@ -292,7 +293,7 @@
                                             <div class="product-desc_info">
                                                 <h6><a class="product-name" th:href="${'/product/'+watch.getId()}" th:text="${watch.getName()}"></a></h6>
                                                 <div class="price-box">
-                                                    <span class="new-price" th:text="${watch.getSalePrice() + ' vnđ'}"></span>
+                                                    <span class="new-price" th:text="${watch.getSalePriceFormat() + ' vnđ'}"></span>
                                                 </div>
                                                 <div class="additional-add_action">
                                                     <ul>
@@ -430,7 +431,7 @@
 <script th:src="@{/client/js/plugins/jquery.elevateZoom-3.0.8.min.js}"></script>
 <!-- Timecircles JS -->
 <script th:src="@{/client/js/plugins/timecircles.js}"></script>
-
+<script th:src="@{/toastr/toastr.min.js}"></script>
 <!-- Main JS -->
 <script th:src="@{/client/js/main.js}"></script>
 <script th:src="@{/client/js/home.js}"></script>

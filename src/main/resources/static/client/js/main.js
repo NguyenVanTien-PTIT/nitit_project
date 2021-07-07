@@ -282,39 +282,39 @@
 		infinite: true,
 		arrows: true,
 		dots: false,
-		speed: 2000,
-		slidesToShow: 4,
+		speed: 1000,
+		slidesToShow: 5,
 		slidesToScroll: 1,
 		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
 		nextArrow: '<button class="slick-next"><i class="ion-ios-arrow-forward"></i></button>',
 		responsive: [{
 				breakpoint: 1501,
 				settings: {
-					slidesToShow: 3
+					slidesToShow: 5
 				}
 			},
 			{
 				breakpoint: 1200,
 				settings: {
-					slidesToShow: 3
+					slidesToShow: 5
 				}
 			},
 			{
 				breakpoint: 992,
 				settings: {
-					slidesToShow: 2
+					slidesToShow: 4
 				}
 			},
 			{
 				breakpoint: 768,
 				settings: {
-					slidesToShow: 2
+					slidesToShow: 3
 				}
 			},
 			{
 				breakpoint: 575,
 				settings: {
-					slidesToShow: 1
+					slidesToShow: 2
 				}
 			}
 		]
@@ -619,7 +619,7 @@
 		infinite: true,
 		arrows: false,
 		dots: false,
-		speed: 2000,
+		speed: 1000,
 		slidesToShow: 4,
 		slidesToScroll: 1,
 		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
@@ -662,7 +662,7 @@
 		infinite: true,
 		arrows: true,
 		dots: false,
-		speed: 2000,
+		speed: 500,
 		slidesToShow: 5,
 		slidesToScroll: 1,
 		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
@@ -670,31 +670,31 @@
 		responsive: [{
 				breakpoint: 1501,
 				settings: {
-					slidesToShow: 4
+					slidesToShow: 5
 				}
 			},
 			{
 				breakpoint: 1200,
 				settings: {
-					slidesToShow: 3
+					slidesToShow: 4
 				}
 			},
 			{
 				breakpoint: 992,
 				settings: {
-					slidesToShow: 2
+					slidesToShow: 3
 				}
 			},
 			{
 				breakpoint: 768,
 				settings: {
-					slidesToShow: 1
+					slidesToShow: 2
 				}
 			},
 			{
 				breakpoint: 575,
 				settings: {
-					slidesToShow: 1
+					slidesToShow: 2
 				}
 			}
 		]

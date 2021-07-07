@@ -1,6 +1,8 @@
 package com.niit.nitit_project.repository;
 
 import com.niit.nitit_project.entity.Watch;
+import com.niit.nitit_project.model.dto.BrandDTO;
+import com.niit.nitit_project.model.dto.StatisticBrand;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -64,4 +66,8 @@ public interface WatchRepository extends JpaRepository<Watch, Integer> {
     Page<Watch> findWishlistOfUserByIdBrand(Integer idUser, Integer idBrand, Pageable pageable);
 
     Optional<Watch> findByCode(String code);
+
+    @Query(value = "SELECT b.name, COUNT(w.id) as totalWatch FROM watch as w INNER JOIN brand as b " +
+            "ON w.id_brand = b.id GROUP BY w.id_brand", nativeQuery = true)
+    List<Object[]> statisticByBrand();
 }

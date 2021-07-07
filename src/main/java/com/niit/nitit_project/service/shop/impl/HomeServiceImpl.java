@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,7 +39,10 @@ public class HomeServiceImpl implements HomeService {
         //Lấy danh sách sản phẩm mới nhất
         List<WatchDTO> watchDTOS = watchRepository.getListNew(LIMIT, 1).stream()
                 .map(o -> {
+                    DecimalFormat df = new DecimalFormat("#,###.##");
                     WatchDTO watchDTO = WatchMapper.toWatchDTO(o);
+                    watchDTO.setPriceFormat(df.format(watchDTO.getPrice()));
+                    watchDTO.setSalePriceFormat(df.format(watchDTO.getSalePrice()));
                     watchDTO.setImageDTOList(
                             imageRepository.getListByIdWatch(o.getId())
                                     .stream()
@@ -48,10 +52,13 @@ public class HomeServiceImpl implements HomeService {
                     return watchDTO;
                 }).collect(Collectors.toList());
         model.addAttribute("listWatchNew", watchDTOS);
-        //Lấy danh sách sản phẩm đang giamr giá
+        //Lấy danh sách sản phẩm đang giam giá
         List<WatchDTO> saleWatchList = watchRepository.getListOnSale(LIMIT, 1).stream()
                 .map(o -> {
+                    DecimalFormat df = new DecimalFormat("#,###.##");
                     WatchDTO watchDTO = WatchMapper.toWatchDTO(o);
+                    watchDTO.setPriceFormat(df.format(watchDTO.getPrice()));
+                    watchDTO.setSalePriceFormat(df.format(watchDTO.getSalePrice()));
                     watchDTO.setImageDTOList(
                             imageRepository.getListByIdWatch(o.getId())
                                     .stream()

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +32,9 @@ public class SingleProductServiceImpl implements SingleProductService {
                                     .map(o-> ImageMapper.toImageDTO(o))
                                     .collect(Collectors.toList())
                                 );
+        DecimalFormat df = new DecimalFormat("#,###.##");
+        watchDTO.setPriceFormat(df.format(watchDTO.getPrice()));
+        watchDTO.setSalePriceFormat(df.format(watchDTO.getSalePrice()));
         model.addAttribute("watch", watchDTO);
         //Lấy danh sách sản phẩm mới
         List<WatchDTO> watchDTOS = watchRepository.getListNew(LIMIT, 1).stream()
@@ -42,6 +46,8 @@ public class SingleProductServiceImpl implements SingleProductService {
                                     .map(image -> ImageMapper.toImageDTO(image))
                                     .collect(Collectors.toList())
                     );
+                    w.setPriceFormat(df.format(w.getPrice()));
+                    w.setSalePriceFormat(df.format(w.getSalePrice()));
                     return w;
                 }).collect(Collectors.toList());
         model.addAttribute("listWatchNew", watchDTOS);
