@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Cart || Hiraola - Jewellery eCommerce Bootstrap 4 Template</title>
+    <title>Chi tiết đơn hàng</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -56,10 +56,10 @@
         <div class="breadcrumb-area">
             <div class="container">
                 <div class="breadcrumb-content">
-                    <h2>Other</h2>
+                    <h2>Shop</h2>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li class="active">Cart</li>
+                        <li><a href="/">Trang chủ</a></li>
+                        <li class="active">Chi tiết đơn hàng</li>
                     </ul>
                 </div>
             </div>
@@ -68,7 +68,7 @@
         <!-- Begin Hiraola's Cart Area -->
         <div class="hiraola-cart-area">
             <div class="container">
-                <h3 style="margin-top: 30px">Total product(s): <span th:text="${order.getTotalWatch()}"></span></h3>
+                <h3 style="margin-top: 30px">Tổng sản phẩm: <span th:text="${order.getTotalWatch()}"></span></h3>
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
@@ -136,7 +136,7 @@
                 </div>
 
                 <div style="text-align: right">
-                    <a class="btn btn-primary" th:href="@{'/client/home'}">Return home</a>
+                    <a class="btn btn-primary" th:href="@{'/client/home'}">Trở về trang chủ</a>
                 </div>
             </div>
         </div>

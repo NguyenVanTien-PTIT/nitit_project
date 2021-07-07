@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Cart || Hiraola - Jewellery eCommerce Bootstrap 4 Template</title>
+    <title>Giỏ hàng của bạn</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -62,10 +62,10 @@
         <div class="breadcrumb-area">
             <div class="container">
                 <div class="breadcrumb-content">
-                    <h2>Other</h2>
+                    <h2>Shop</h2>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li class="active">Cart</li>
+                        <li><a href="/client/home">Trang chủ</a></li>
+                        <li class="active">Giỏ hàng</li>
                     </ul>
                 </div>
             </div>
@@ -134,9 +134,9 @@
                                     <div class="cart-page-total">
                                         <h2>Cart totals</h2>
                                         <ul>
-                                            <li>Tổng tiền <span th:text="${cart.getTotalPriceFormat()}+' vnđ'"></span></li>
+                                            <li>Tổng tiền <span th:if="${cart.getTotalPriceFormat()!= null}" th:text="${cart.getTotalPriceFormat()}+' vnđ'"></span></li>
                                         </ul>
-                                        <a th:if="${listItem.size()} > 0" th:href="@{'/order/checkout'}">Proceed to checkout</a>
+                                        <a th:if="${listItem.size()} > 0" th:href="@{'/order/checkout'}">Tiến hành thanh toán</a>
                                     </div>
                                 </div>
                             </div>
