@@ -110,7 +110,7 @@
                                                       th:attr="idCartWatch=${item.getId()}">
                                             </td>
                                             <td class="product-subtotal">
-                                                <span class="amount" th:text="${item.getPrice()}+' vnđ'"></span>
+                                                <span class="amount" th:text="${item.getPriceFormat()}+' vnđ'"></span>
                                             </td>
                                             <td class="hiraola-product-remove">
                                                 <a class="delete-cart-product" th:attr="idItem=${item.getId()}" style="cursor: pointer">

@@ -1,9 +1,6 @@
 package com.niit.nitit_project.service.manage.Impl;
 
-import com.niit.nitit_project.entity.Watch;
-import com.niit.nitit_project.model.dto.BrandDTO;
-import com.niit.nitit_project.model.dto.StatisticBrand;
-import com.niit.nitit_project.model.dto.WatchDTO;
+import com.niit.nitit_project.model.response.StatisticBrand;
 import com.niit.nitit_project.repository.WatchRepository;
 import com.niit.nitit_project.service.manage.StatisticService;
 import com.niit.nitit_project.utils.DataUtils;

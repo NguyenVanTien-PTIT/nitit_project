@@ -19,4 +19,5 @@ public class OrderWatchDTO {
     private Long count;
     private Double price;
     private String image;
+    private String priceFormat;
 }

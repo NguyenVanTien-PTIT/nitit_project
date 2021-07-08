@@ -125,6 +125,7 @@ public class CartServiceImpl implements CartService {
                 model.addAttribute("listItem", new ArrayList<CartWatchDTO>());
                 return model;
             }else {
+                DecimalFormat df = new DecimalFormat("#,###.##");
                 CartDTO cartDTO = CartMapper.toCartDTO(carts.get(0));
                 Long totalWatch = 0L;
                 List<CartWatch> cartWatchList = cartWatchRepository.findByIdCart(cartDTO.getId());
@@ -132,12 +133,12 @@ public class CartServiceImpl implements CartService {
                 for(CartWatch x : cartWatchList){
                     totalWatch += x.getCount();
                     CartWatchDTO cartWatchDTO = CartWatchMapper.toCartWatchDTO(x);
+                    cartWatchDTO.setPriceFormat(df.format(x.getPrice()));
                     cartWatchDTO.setImage(imageRepository.getListByIdWatch(x.getIdWatch()).get(0).getLink());
                     listItem.add(cartWatchDTO);
                 }
                 //Lấy tổng số lượng sản phẩm
                 cartDTO.setTotalWatch(totalWatch);
-                DecimalFormat df = new DecimalFormat("#,###.##");
                 cartDTO.setTotalPriceFormat(df.format(cartDTO.getTotalPrice()));
                 model.addAttribute("cart", cartDTO);
                 model.addAttribute("listItem", listItem);

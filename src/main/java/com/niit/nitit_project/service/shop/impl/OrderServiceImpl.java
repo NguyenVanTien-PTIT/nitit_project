@@ -131,9 +131,11 @@ public class OrderServiceImpl implements OrderService {
         List<OrderWatch> orderWatchList = orderWatchRepository.findByIdOrder(id);
         List<OrderWatchDTO> orderWatchDTOList = new ArrayList<>();
         for(OrderWatch x : orderWatchList){
+            DecimalFormat df = new DecimalFormat("#,###.##");
             totalWatch += x.getCount();
             OrderWatchDTO orderWatchDTO = OrderWatchMapper.toOrderWatchDTO(x);
             orderWatchDTO.setImage(imageRepository.getListByIdWatch(x.getIdWatch()).get(0).getLink());
+            orderWatchDTO.setPriceFormat(df.format(x.getPrice()));
             orderWatchDTOList.add(orderWatchDTO);
         }
         orderDTO.setTotalWatch(totalWatch);

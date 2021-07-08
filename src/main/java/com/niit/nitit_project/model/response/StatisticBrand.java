@@ -1,4 +1,4 @@
-package com.niit.nitit_project.model.dto;
+package com.niit.nitit_project.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

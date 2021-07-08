@@ -18,5 +18,6 @@ public class CartWatchDTO {
     private String nameWatch;
     private Long count;
     private Double price;
+    private String priceFormat;
     private String image;
 }
