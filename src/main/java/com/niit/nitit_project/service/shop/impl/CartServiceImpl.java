@@ -62,7 +62,12 @@ public class CartServiceImpl implements CartService {
                 cart.setUsername(user.getUsername());
                 cart.setCreatedDate(Timestamp.valueOf(LocalDateTime.now()));
                 cart.setStatus(0);
-                Cart cartCurrent = cartRepository.save(cart);
+                Cart cartCurrent;
+                try{
+                    cartCurrent = cartRepository.save(cart);
+                }catch (Exception e){
+                    return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Có lỗi khi tạo giỏ hàng mới", null);
+                }
                 //Tạo cart watch mới
                 CartWatch cartWatch = new CartWatch();
                 cartWatch.setIdCart(cartCurrent.getId());
@@ -70,10 +75,18 @@ public class CartServiceImpl implements CartService {
                 cartWatch.setNameWatch(watch.getName());
                 cartWatch.setCount(cartWatchDTO.getCount());
                 cartWatch.setPrice(watch.getSalePrice());
-                cartWatchRepository.save(cartWatch);
+                try{
+                    cartWatchRepository.save(cartWatch);
+                }catch (Exception e){
+                    return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Có lỗi khi tạo item mới", null);
+                }
                 //Set lại tổng giá tiền rồi lưu lại
                 cartCurrent.setTotalPrice(cartWatch.getPrice() * cartWatch.getCount());
-                cartRepository.save(cart);
+                try{
+                    cartRepository.save(cart);
+                }catch (Exception e){
+                    return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Có lỗi khi lưu giỏ hàng", null);
+                }
             }
             else {
                 //Lấy cart hiện tại để thêm watch vào
@@ -88,19 +101,31 @@ public class CartServiceImpl implements CartService {
                     item.setCount(cartWatchDTO.getCount());
                     item.setNameWatch(watch.getName());
                     item.setPrice(watch.getSalePrice());
-                    cartWatchRepository.save(item);
+                    try{
+                        cartWatchRepository.save(item);
+                    }catch (Exception e){
+                        return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Có lỗi khi thêm mới sản phẩm vào giỏ hàng", null);
+                    }
                 }else {
                     //Nếu tồn tại sản phẩm thì + số lượng hàng cần thêm vào Cart watch đó
                     CartWatch item = itemFind.get();
                     Long count = item.getCount();
                     item.setCount(count + cartWatchDTO.getCount());
-                    cartWatchRepository.save(item);
+                    try{
+                        cartWatchRepository.save(item);
+                    }catch (Exception e){
+                        return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Có lỗi khi cập nhật số lượng sản phẩm vào giỏ hàng", null);
+                    }
                 }
                 //Cập nhật lại tổng giá tiền giỏ hàng
                 Double price = cart.getTotalPrice();
                 price += watch.getSalePrice() * cartWatchDTO.getCount();
                 cart.setTotalPrice(price);
-                cartRepository.save(cart);
+                try{
+                    cartRepository.save(cart);
+                }catch (Exception e){
+                    return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Có lỗi cập nhật giỏ hàng", null);
+                }
             }
             return new ResponseNormal<>(HttpStatus.OK, "Thêm vào giỏ hàng thành công", null);
         }catch (Exception e){
@@ -166,9 +191,13 @@ public class CartServiceImpl implements CartService {
         //Tính toán lại số tiền
         Double totalPrice = cart.getTotalPrice() - (cartWatch.getPrice() * cartWatch.getCount());
         cart.setTotalPrice(totalPrice);
-        cartRepository.save(cart);
-        cartWatchRepository.deleteById(id);
-        return new ResponseNormal<>(HttpStatus.OK, "Xóa thành công", null);
+        try{
+            cartRepository.save(cart);
+            cartWatchRepository.deleteById(id);
+            return new ResponseNormal<>(HttpStatus.OK, "Xóa thành công", null);
+        }catch (Exception e){
+            return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Có lỗi khi xóa", null);
+        }
     }
 
     @Override
@@ -195,8 +224,12 @@ public class CartServiceImpl implements CartService {
             cartWatch.setCount(cartWatchDTO.getCount());
             cart.setTotalPrice(totalPrice);
         }
-        cartWatchRepository.save(cartWatch);
-        cartRepository.save(cart);
-        return new ResponseNormal<>(HttpStatus.OK, "Thay đổi số lượng thành công!", null);
+        try{
+            cartWatchRepository.save(cartWatch);
+            cartRepository.save(cart);
+            return new ResponseNormal<>(HttpStatus.OK, "Thay đổi số lượng thành công!", null);
+        }catch (Exception e){
+            return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Có lỗi khi thay đổi số lượng", null);
+        }
     }
 }

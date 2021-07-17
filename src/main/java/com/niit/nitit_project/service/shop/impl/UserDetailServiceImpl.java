@@ -58,7 +58,11 @@ public class UserDetailServiceImpl implements UserDetailService {
         user.setAge(userDTO.getAge());
         user.setModifiedDate(Timestamp.valueOf(LocalDateTime.now()));
         user.setModifiedBy(user.getId());
-        userRepository.save(user);
-        return new ResponseNormal<>(HttpStatus.OK, "Cập nhật hồ sơ thành công!", null);
+        try{
+            userRepository.save(user);
+            return new ResponseNormal<>(HttpStatus.OK, "Cập nhật hồ sơ thành công!", null);
+        }catch (Exception e){
+            return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Có lỗi khi cập nhật!", null);
+        }
     }
 }

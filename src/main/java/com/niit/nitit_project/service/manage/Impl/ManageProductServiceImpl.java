@@ -2,6 +2,7 @@ package com.niit.nitit_project.service.manage.Impl;
 
 import com.niit.nitit_project.entity.*;
 import com.niit.nitit_project.model.dto.BrandDTO;
+import com.niit.nitit_project.model.dto.ImageDTO;
 import com.niit.nitit_project.model.dto.WatchDTO;
 import com.niit.nitit_project.model.mapper.BrandMapper;
 import com.niit.nitit_project.model.mapper.ImageMapper;
@@ -148,12 +149,16 @@ public class ManageProductServiceImpl implements ManageProductService {
         watch.setCreatedBy(user.getId());
         Watch newWatch = watchRepository.save(watch);
         //Lưu ảnh sản phẩm
-        watchDTO.getImageDTOList().forEach(o -> {
+        for(ImageDTO o : watchDTO.getImageDTOList()){
             Image image = ImageMapper.toImage(o);
             image.setIdWatch(newWatch.getId());
             image.setCreatedDate(Timestamp.valueOf(LocalDateTime.now()));
-            imageRepository.save(image);
-        });
+            try{
+                imageRepository.save(image);
+            }catch (Exception e){
+                return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Có lỗi khi thêm sản phẩm ", null);
+            }
+        }
         return new ResponseNormal<>(HttpStatus.OK, "Thêm sản phẩm thành công!", null);
     }
 
@@ -171,13 +176,22 @@ public class ManageProductServiceImpl implements ManageProductService {
         }
         //Xóa các ảnh liên quan
         List<Image> images = imageRepository.findByIdWatch(id);
-        images.forEach(image -> {
+        for(Image image: images){
             //Xóa ảnh trên ổ đĩa
             FileUtils.deleteFile(UPLOAD_DIR, image.getLink().substring(16));
-            imageRepository.delete(image);
-        });
+            //Xóa ảnh trên db
+            try{
+                imageRepository.delete(image);
+            }catch (Exception e){
+                return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Có lỗi khi xóa ảnh sản phẩm!", null);
+            }
+        }
         //Xóa sản phẩm
-        watchRepository.deleteById(id);
+        try{
+            watchRepository.deleteById(id);
+        }catch (Exception e){
+            return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Có lỗi khi xóa sản phẩm!", null);
+        }
         return new ResponseNormal<>(HttpStatus.OK, "Xóa sản phẩm thành công!", null);
     }
 
@@ -210,8 +224,12 @@ public class ManageProductServiceImpl implements ManageProductService {
         Watch watch = WatchMapper.toWatch(watchDTO);
         watch.setModifiedDate(Timestamp.valueOf(LocalDateTime.now()));
         watch.setModifiedBy(user.getId());
-        watchRepository.save(watch);
-        return new ResponseNormal<>(HttpStatus.OK, "Sửa sản phẩm thành công!", null);
+        try{
+            watchRepository.save(watch);
+            return new ResponseNormal<>(HttpStatus.OK, "Sửa sản phẩm thành công!", null);
+        }catch (Exception e){
+            return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Có lỗi khi sửa sản phẩm!", null);
+        }
     }
 
     public Boolean checkDuplicateCode(String code){

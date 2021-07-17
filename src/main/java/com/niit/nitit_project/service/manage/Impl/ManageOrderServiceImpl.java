@@ -78,16 +78,20 @@ public class ManageOrderServiceImpl implements ManageOrderService {
         }
         int status = order.getStatus() +1;
         order.setStatus(status);
-        orderRepository.save(order);
-        String msg = new String();
-        if(status == 1){
-            msg = "Đơn hàng chuyển sang trạng thái đã xác nhận!";
-        }else if(status == 2){
-            msg = "Đơn hàng chuyển sang trạng thái đang giao!";
-        } else{
-            msg = "Đơn hàng chuyển sang trạng thái đã giao!";
+        try{
+            orderRepository.save(order);
+            String msg = new String();
+            if(status == 1){
+                msg = "Đơn hàng chuyển sang trạng thái đã xác nhận!";
+            }else if(status == 2){
+                msg = "Đơn hàng chuyển sang trạng thái đang giao!";
+            } else{
+                msg = "Đơn hàng chuyển sang trạng thái đã giao!";
+            }
+            return new ResponseNormal<>(HttpStatus.OK, msg, null);
+        }catch (Exception e){
+            return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Có lỗi khi chuyển trạng thái đơn hàng!", null);
         }
-        return new ResponseNormal<>(HttpStatus.OK, msg, null);
     }
 
     @Override
@@ -97,7 +101,11 @@ public class ManageOrderServiceImpl implements ManageOrderService {
             return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Trạng thái đơn hàng không thay đổi!", null);
         }
         order.setStatus(orderDTO.getStatus());
-        orderRepository.save(order);
-        return new ResponseNormal<>(HttpStatus.OK, "Thay đổi trạng thái thành công!", null);
+        try{
+            orderRepository.save(order);
+            return new ResponseNormal<>(HttpStatus.OK, "Thay đổi trạng thái thành công!", null);
+        }catch (Exception e){
+            return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Có lỗi khi chuyển trạng thái đơn hàng!", null);
+        }
     }
 }

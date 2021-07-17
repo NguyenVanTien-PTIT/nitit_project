@@ -46,8 +46,12 @@ public class ManageImageServiceImpl implements ManageImageService {
     public ResponseNormal<?> addImage(ImageDTO imageDTO) {
         Image image = ImageMapper.toImage(imageDTO);
         image.setCreatedDate(Timestamp.valueOf(LocalDateTime.now()));
-        imageRepository.save(image);
-        return new ResponseNormal<>(HttpStatus.OK, "Thêm ảnh mới thành công!", null);
+        try{
+            imageRepository.save(image);
+            return new ResponseNormal<>(HttpStatus.OK, "Thêm ảnh mới thành công!", null);
+        }catch (Exception e){
+            return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Có lỗi khi thêm mới ảnh!", null);
+        }
     }
 
     @Override
@@ -59,7 +63,11 @@ public class ManageImageServiceImpl implements ManageImageService {
         }
         //Xóa trên ổ đĩa và trên db
         FileUtils.deleteFile(UPLOAD_DIR, image.getLink().substring(16));
-        imageRepository.delete(image);
-        return new ResponseNormal<>(HttpStatus.OK, "Xóa thành công!", null);
+        try{
+            imageRepository.delete(image);
+            return new ResponseNormal<>(HttpStatus.OK, "Xóa thành công!", null);
+        }catch (Exception e){
+            return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Có lỗi khi xóa!", null);
+        }
     }
 }

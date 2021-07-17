@@ -48,8 +48,12 @@ public class ManageBrandServiceImpl implements ManageBrandService {
         if(checkExitsName(brandDTO.getName())){
             return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Tên thương hiệu đã tồn tại!", null);
         }
-        brandRepository.save(BrandMapper.toBrand(brandDTO));
-        return new ResponseNormal<>(HttpStatus.OK, "Thêm mới thành công!", null);
+        try{
+            brandRepository.save(BrandMapper.toBrand(brandDTO));
+            return new ResponseNormal<>(HttpStatus.OK, "Thêm mới thành công!", null);
+        }catch (Exception exception){
+            return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Có lỗi khi thêm mới!", null);
+        }
     }
 
     @Override
@@ -78,8 +82,12 @@ public class ManageBrandServiceImpl implements ManageBrandService {
         if(watchList.getContent().size() > 0){
             return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Vẫn còn sản phẩm thuộc thương hiệu này, không thể xóa", null);
         }
-        brandRepository.deleteById(id);
-        return new ResponseNormal<>(HttpStatus.OK, "Xóa thành công!", null);
+        try{
+            brandRepository.deleteById(id);
+            return new ResponseNormal<>(HttpStatus.OK, "Xóa thành công!", null);
+        }catch (Exception exception){
+            return new ResponseNormal<>(HttpStatus.BAD_REQUEST, "Có lỗi khi xóa!", null);
+        }
     }
 
     public Boolean checkExitsName(String name){
